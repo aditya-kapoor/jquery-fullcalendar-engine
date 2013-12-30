@@ -33,7 +33,6 @@
 //                  revertFunc();
 //              }
           },
-          
           eventResize: function(event, dayDelta, minuteDelta, revertFunc){
 //              if (confirm("Are you sure about this change?")) {
                   resizeEvent(event, dayDelta, minuteDelta);
@@ -42,7 +41,6 @@
 //                  revertFunc();
 //              }
           },
-          
           eventClick: function(event, jsEvent, view){
               showEventDetails(event);
           },
@@ -50,8 +48,6 @@
           select: function( startDate, endDate, allDay, jsEvent, view ) {
             FullcalendarEngine.Form.display({ starttime: new Date(startDate.getTime()), endtime: new Date(endDate.getTime()), allDay: allDay })
           }
-      
-      
       });
   });
 </script>

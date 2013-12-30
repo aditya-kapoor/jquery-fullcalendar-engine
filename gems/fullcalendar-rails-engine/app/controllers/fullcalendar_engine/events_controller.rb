@@ -19,14 +19,12 @@ module FullcalendarEngine
 
     def get_events
       @events = Event.where("starttime >= '#{Time.at(params['start'].to_i).to_formatted_s(:db)}' and endtime <= '#{Time.at(params['end'].to_i).to_formatted_s(:db)}'")
-      events = [] 
+      events = []
       @events.each do |event|
         events << {:id => event.id, :title => event.title, :description => event.description || "Some cool description here...", :start => "#{event.starttime.iso8601}", :end => "#{event.endtime.iso8601}", :allDay => event.all_day, :recurring => (event.event_series_id)? true: false}
       end
       render :text => events.to_json
     end
-
-
 
     def move
       @event = Event.where(:id => params[:id]).first
@@ -38,7 +36,6 @@ module FullcalendarEngine
       end
       render :nothing => true
     end
-
 
     def resize
       @event = Event.where(:id => params[:id]).first
