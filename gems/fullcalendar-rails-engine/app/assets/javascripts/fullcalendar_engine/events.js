@@ -134,6 +134,7 @@ function showPeriodAndFrequency(value){
       $('#frequency').hide();
   }
 }
+
 $(document).ready(function(){
   $('#create_event_dialog, #event_desc_dialog').on('submit', "#event_form", function(event) {
     var $spinner = $('.spinner');
@@ -158,6 +159,31 @@ $(document).ready(function(){
 
     function handle_error(xhr) {
       alert(xhr.responseText);
+    }
+  })
+
+  $.extend(full_calendar_options, {
+    loading: function(bool){
+      if (bool)
+        $('#loading').show();
+      else
+        $('#loading').hide();
+    },
+    eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
+      moveEvent(event, dayDelta, minuteDelta, allDay);
+    },
+    eventResize: function(event, dayDelta, minuteDelta, revertFunc){
+      resizeEvent(event, dayDelta, minuteDelta);
+    },
+    eventClick: function(event, jsEvent, view){
+      showEventDetails(event);
+    },
+    select: function( startDate, endDate, allDay, jsEvent, view ) {
+      FullcalendarEngine.Form.display({ 
+        starttime: new Date(startDate.getTime()), 
+        endtime:   new Date(endDate.getTime()), 
+        allDay:    allDay 
+      })
     }
   })
 });
