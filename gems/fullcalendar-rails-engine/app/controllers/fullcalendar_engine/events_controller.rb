@@ -3,11 +3,13 @@ require_dependency "fullcalendar_engine/application_controller"
 module FullcalendarEngine
   class EventsController < ApplicationController
 
+    layout FullcalendarEngine::Configuration['layout'] || "fullcalendar_engine/application"
+
     def create
       if params[:event][:period] == "Does not repeat"
         event = Event.new(event_params)
       else
-        #      @event_series = EventSeries.new(:frequency => params[:event][:frequency], :period => params[:event][:repeats], :starttime => params[:event][:starttime], :endtime => params[:event][:endtime], :all_day => params[:event][:all_day])
+        # @event_series = EventSeries.new(:frequency => params[:event][:frequency], :period => params[:event][:repeats], :starttime => params[:event][:starttime], :endtime => params[:event][:endtime], :all_day => params[:event][:all_day])
         event = EventSeries.new(event_params)
       end
       if event.save
