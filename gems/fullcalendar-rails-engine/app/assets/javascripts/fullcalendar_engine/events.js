@@ -2,7 +2,6 @@
 // All this logic will automatically be available in application.js.
 if (typeof(FullcalendarEngine) === 'undefined') { FullcalendarEngine = {}; }
 
-
 FullcalendarEngine.Form = {
   display: function(options) {
 
@@ -40,8 +39,11 @@ FullcalendarEngine.Form = {
       type: 'get',
       dataType: 'script',
       async: true,
-      url: "/fullcalendar_engine/events/new"
+      url: FullcalendarEngine.Form.app_path() + "/events/new"
     });
+  },
+  app_path: function(){
+    return (app_path || window.location.pathname.match(/\/(\w)+/)[0])
   }
 }
 
@@ -50,7 +52,7 @@ function moveEvent(event, dayDelta, minuteDelta, allDay){
     data: 'id=' + event.id + '&title=' + event.title + '&day_delta=' + dayDelta + '&minute_delta=' + minuteDelta + '&all_day=' + allDay + '&authenticity_token=' + authenticity_token,
     dataType: 'script',
     type: 'post',
-    url: "/fullcalendar_engine/events/move"
+    url: FullcalendarEngine.Form.app_path() + "/events/move"
   });
 }
 
@@ -59,13 +61,13 @@ function resizeEvent(event, dayDelta, minuteDelta){
     data: 'id=' + event.id + '&title=' + event.title + '&day_delta=' + dayDelta + '&minute_delta=' + minuteDelta + '&authenticity_token=' + authenticity_token,
     dataType: 'script',
     type: 'post',
-    url: "/fullcalendar_engine/events/resize"
+    url: FullcalendarEngine.Form.app_path() + "/events/resize"
   });
 }
 
 function showEventDetails(event){
   $('#event_desc_dialog').html('')
-  $event_description  = $('<div />').html(event.description).attr("id", "event_description")
+  $event_description  = $('<div />').html(event.description).attr("id", "edit_event_description")
   $event_actions      = $('<div />').attr("id", "event_actions")
   $edit_event         = $('<span />').attr("id", "edit_event").html("<a href = 'javascript:void(0);' onclick ='editEvent(" + event.id + ")'>Edit</a>");
   $delete_event       = $('<span />').attr("id", "delete_event")
@@ -90,9 +92,9 @@ function showEventDetails(event){
 
 function editEvent(event_id){
   jQuery.ajax({
-    url: "/fullcalendar_engine/events/" + event_id + "/edit",
+    url: FullcalendarEngine.Form.app_path() + "/events/" + event_id + "/edit",
     success: function(data) {
-      $('#event_description').html(data['form']);
+      $('#edit_event_description').html(data['form']);
     }
   });
 }
@@ -102,7 +104,7 @@ function deleteEvent(event_id, delete_all){
     data: 'authenticity_token=' + authenticity_token + '&delete_all=' + delete_all,
     dataType: 'script',
     type: 'delete',
-    url: "/fullcalendar_engine/events/" + event_id,
+    url: FullcalendarEngine.Form.app_path() + "/events/" + event_id,
     success: refetch_events_and_close_dialog
   });
 }

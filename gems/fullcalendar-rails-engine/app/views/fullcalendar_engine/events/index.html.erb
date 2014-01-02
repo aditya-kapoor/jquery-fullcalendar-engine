@@ -5,6 +5,7 @@
 <%= content_tag :script do %>
   full_calendar_options = <%= FullcalendarEngine::Configuration.to_json.html_safe %>
   authenticity_token    = "<%= form_authenticity_token %>"
+  app_path              = full_calendar_options["mount_path"]
 <% end %>
 
 <script>

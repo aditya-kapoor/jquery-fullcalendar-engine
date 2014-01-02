@@ -1,5 +1,4 @@
 config = File.exists?('config/fullcalendar.yml') ? YAML.load_file("config/fullcalendar.yml") || {} : {}
-
 FullcalendarEngine::Configuration = {
   'editable'    => true,
   'header'      => {
@@ -12,7 +11,7 @@ FullcalendarEngine::Configuration = {
   'slotMinutes' => 15,
   'dragOpacity' => 0.5,
   'selectable'  => true,
-  'events'      => "fullcalendar_engine/events/get_events",
   'timeFormat'  => "h:mm t{ - h:mm t}"
 }
 FullcalendarEngine::Configuration.merge!(config)
+FullcalendarEngine::Configuration['events'] = "#{FullcalendarEngine::Configuration['mount_path']}/events/get_events"
