@@ -3,7 +3,7 @@ require_dependency "fullcalendar_engine/application_controller"
 module FullcalendarEngine
   class EventsController < ApplicationController
 
-    layout FullcalendarEngine::Configuration['layout'] || "fullcalendar_engine/application"
+    layout FullcalendarEngine::Configuration['layout'] || "application"
 
     def create
       if params[:event][:period] == "Does not repeat"

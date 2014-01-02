@@ -1,4 +1,4 @@
-# # display
+# Refer to the http://arshaw.com/fullcalendar/docs/ to know more about the following options in greater depth
 # defaultView: 'agendaWeek'
 # aspectRatio: 1.35
 # header:
@@ -10,19 +10,16 @@
 # weekNumberCalculation: 'iso'
 # weekNumberTitle: 'W'
   
-# # editing
 # editable: true
 # disableDragging: false
 # disableResizing: false
 # allDayDefault: true
 # ignoreTimezone: true
   
-# # event ajax
 # lazyFetching: true
 # startParam: 'start'
 # endParam: 'end'
 
-# # time formats
 # titleFormat:
 #   month: 'MMMM yyyy'
 #   week: "MMM d[ yyyy]{ '&#8212;'[ MMM] d yyyy}"
@@ -34,7 +31,6 @@
 # timeFormat:
 #   '': 'h(:mm)t'  # default
   
-# # locale
 # isRTL: false
 # firstDay: 0
 # monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December']
@@ -51,7 +47,6 @@
 #   week: 'week'
 #   day: 'day'
   
-# # jquery-ui theming
 # theme: false
 # buttonIcons:
 #   prev: 'circle-triangle-w'
