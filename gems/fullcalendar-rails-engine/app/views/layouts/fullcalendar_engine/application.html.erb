@@ -4,7 +4,6 @@
     <title> jQuery full calendar with RubyOnRails | VinSol </title>
     <%= javascript_include_tag 'application', "data-turbolinks-track" => true %>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-    <%= yield :scripts %>
   </head>
   <body class="subpage">
     <div class="wrapper">
@@ -26,8 +25,5 @@
         </div>
       </div>
     </div>
-    <script>
-      authenticity_token = "<%= form_authenticity_token %>"
-    </script>
   </body>
 </html>
