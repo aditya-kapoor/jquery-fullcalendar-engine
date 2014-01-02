@@ -1,4 +1,5 @@
-config = File.exists?('config/fullcalendar.yml') ? YAML.load_file("config/fullcalendar.yml") : {}
+config = File.exists?('config/fullcalendar.yml') ? YAML.load_file("config/fullcalendar.yml") || {} : {}
+
 FullcalendarEngine::Configuration = {
   'editable'    => true,
   'header'      => {
